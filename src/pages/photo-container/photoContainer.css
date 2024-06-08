@@ -1,0 +1,12 @@
+.photo-conatiner {
+    padding: 0 30px;
+  }
+  
+  .photo-wrapper{
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .photo-wrapper img {
+    margin: 10px;
+  }
