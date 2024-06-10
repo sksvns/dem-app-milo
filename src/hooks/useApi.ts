@@ -15,6 +15,7 @@ const useApi = (url: string) => {
             .catch(err => {
                 setData(err);
                 setLoading(false);
+                setError(err)
             })
     }, [url])
 

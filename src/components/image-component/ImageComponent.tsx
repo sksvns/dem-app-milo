@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import './imageComponent.css';
 
-const ImageComp = ({ src, alt }) => {
+type ImageCompProps = {
+    src: string;
+    alt: string;
+}
+
+const ImageComp = ({ src, alt }: ImageCompProps) => {
     const [loaded, setLoaded] = useState(false);
     return <div className='imgContainer'>
         <img
@@ -10,7 +15,7 @@ const ImageComp = ({ src, alt }) => {
             src={src} fetchPriority='low'
             onLoad={() => setLoaded(true)}
         />
-        {!loaded && <div className='blurred'></div>}
+        {!loaded && <div className='blurred' aria-label='blurred-overlay'></div>}
     </div>
 }
 

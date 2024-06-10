@@ -10,13 +10,21 @@ import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner';
 
 
 const Dashboard: React.FC = () => {
-    const [data, error, loading] = useApi("https://jsonplaceholder.typicode.com/albums")
+    const [data,, loading] = useApi("https://jsonplaceholder.typicode.com/albums")
     const [numberOfGroup, setNumberOfGroup] = useState<any>(0);
     const [value, setValue] = React.useState('Group1');
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
+
+    const generateGUID = () => {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
 
     useEffect(() => {
         if (data) {
@@ -34,8 +42,8 @@ const Dashboard: React.FC = () => {
                     onChange={handleChange}
                     aria-label="wrapped label tabs example"
                 >
-                    {Array.from({ length: numberOfGroup }).map((item, idx) => {
-                        return <Tab value={`Group${idx + 1}`} label={`Group ${idx + 1}`} key={`Group${idx + 1}`} />
+                    {Array.from({ length: numberOfGroup }, () => generateGUID()).map((item, idx) => {
+                        return <Tab value={`Group${idx + 1}`} label={`Group ${idx + 1}`} key={`Group${item + 1}`} />
                     })}
 
                 </Tabs>

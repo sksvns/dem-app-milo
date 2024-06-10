@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './photoContainer.css';
 import { Link, useParams } from 'react-router-dom';
 import useApi from '../../hooks/useApi';
