@@ -4,19 +4,18 @@ import { Link, useParams } from 'react-router-dom';
 import useApi from '../../hooks/useApi';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner';
 import { ImageData } from '../../types';
+import ImageComp from '../../components/image-component/ImageComponent';
 
 const PhotoContainer = () => {
     const { id } = useParams();
-    const [data, error, loading] = useApi(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`)
+    const [data,, loading] = useApi(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`)
 
-    useEffect(() => {
-    }, [data])
     return (
         <div className='photo-conatiner'>
             <LoadingSpinner loading={loading} />
             <span style={{ float: "right" }}><Link to="/">X</Link></span><h1>Photos</h1><hr />
             <div className='photo-wrapper'>
-                {data && data.map((item: ImageData) => <img src={item.thumbnailUrl} key={item.id} alt="img" />)}
+                {data && data.map((item: ImageData) => <ImageComp src={item.thumbnailUrl} alt="img" />)}
             </div>
         </div>
     )

@@ -1,0 +1,13 @@
+.imgContainer {
+    position: relative;
+}
+
+.blurred {
+    height: 150px;
+    width: 150px;
+    background: url("../../assets/img/small-placeholder.png");
+    z-index: 999;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
