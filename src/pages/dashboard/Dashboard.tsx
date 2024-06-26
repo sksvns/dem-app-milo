@@ -8,9 +8,14 @@ import MUICard from '../../components/mui-card/MUICard';
 import { capitalize } from '../../utils/helper-function';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner';
 
+export type APIAlbumRes = {
+    userId: number,
+    id: number,
+    title: string
+}
 
 const Dashboard: React.FC = () => {
-    const [data,, loading] = useApi("https://jsonplaceholder.typicode.com/albums")
+    const {data, loading} = useApi<APIAlbumRes[]>("https://jsonplaceholder.typicode.com/albums")
     const [numberOfGroup, setNumberOfGroup] = useState<any>(0);
     const [value, setValue] = React.useState('Group1');
 

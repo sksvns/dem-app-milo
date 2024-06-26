@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 
-const useApi = (url: string) => {
-    const [data, setData] = useState<any>(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
+type ApiResponse<T> = {
+    data: T | null;
+    error: any;
+    loading: boolean;
+};
+
+const useApi = <T>(url: string): ApiResponse<T> => {
+    const [data, setData] = useState<T | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         fetch(url)
@@ -19,7 +25,7 @@ const useApi = (url: string) => {
             })
     }, [url])
 
-    return [ data, error, loading ];
+    return { data, error, loading };
 }
 
 export default useApi;
